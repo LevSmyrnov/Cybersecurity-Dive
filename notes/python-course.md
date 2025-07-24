@@ -1,1 +1,3 @@
 1. MITRE ATT&CK and Shield framework describes different techniques, procedures and goals of attacker and active defender in cybersecurity context.
+2. To work with python libraries installed from pip, it is best to create virtual environments, so that there are no clashes with libraries installed globally through ```apt```.<p>```python3 -m venv .venv```</p><p>```source .venv/bin/activate```</p><p>```python3 -m pip install <LIBRARY_NAME>```.</p>
+3. ```Scapy``` is a library designed for working with network traffic. It can view, edit and build packets.<p></p><img width="273" height="505" alt="image" src="https://github.com/user-attachments/assets/16b42fb7-3c6c-4144-990b-46c189450faa" /><p></p>
