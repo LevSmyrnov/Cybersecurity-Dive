@@ -1,2 +1,3 @@
 1. To work with python libraries installed from pip, it is best to create virtual environments, so that there are no clashes with libraries installed globally through ```apt```.<p>```python3 -m venv .venv```</p><p>```source .venv/bin/activate```</p><p>```python3 -m pip install <LIBRARY_NAME>```.</p>
 2. ```pscp``` is used to transafer files over Putty SSH. To use this command, user must be in the pscp.exe folder (or have the folder in $PATH). To copy file from host to server:<p>```pscp '<SOURCE_FILE>' '<USER>@<SERVER_NAME>:<DESTINATION_DIRECTORY'```</p>
+3. To pass data to and from docker container, use ```mount``` to sync file or folder. e.g ```--mount type=bind,source=/home/lev/roadmap-server/html,target=/usr/share/nginx/html,readonly```.
