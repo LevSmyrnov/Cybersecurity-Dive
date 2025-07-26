@@ -3,3 +3,4 @@
 3. To pass data to and from docker container, use ```mount``` to sync file or folder. e.g ```--mount type=bind,source=/home/lev/roadmap-server/html,target=/usr/share/nginx/html,readonly```.
 4. To configure ```vim``` create and set up <b>.vimrc</b> (e.g copy values from <b>defaults.vim</b> with your modifications). If changes do not apply, check ```:scriptnames``` for whether something overrides your file`s changes later - one workaround is to ```alias vim='vim -S <PATH_TO>.vimrc'``` in <b>~/.bashrc</b>.
 5. Copying from ```vim``` can be done by selecting with mouse and <b>Shift</b> pressed. Then <b>Ctrl</b>+<b>Shift</b>+<b>C</b>.
+6. ```tmux``` is used to work with multiple sessions/windows/panes inside one SSH terminal.
