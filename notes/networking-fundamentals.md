@@ -12,3 +12,23 @@
     OSI *model* is a guide. OSI *protocols*/*protocol suites* are implementations.
 3. Layers have data related to them. Data is preceded by *header*, which contains information (control flags) on how to process data.
 4. On Ethernet, maximum IP packet size is 1500 bytes. If the IP packet size is bigger than **M**aximum **T**ransmission **U**nit size, the IP packet undergoes IP fragmentation into multiple packets. *During tunneling, MTU may be smaller than on local Ethernet part of network.
+## Network Topologies
+1. Star (hub and spoke). All devices are connected to central node. e.g Switched Ethernet networks.
+2. Ring. Higher fault tolerance.
+3. Coax (bus network). Simple, but prone to errors.
+4. Mesh. Multiple links to same place.
+5. Hybrid. More than 1 topology types together.
+6. Wireless. Access through access points. Access through ad hoc. Multiple ad hoc devices can create mesh wireless networks.
+### Network types
+1. Peer-to-peer. Everyone talks to everyone.
+2. Client-server. Responsibilities are split.
+3. LAN. One building. Uses Ethernet or 802.11 wireless.
+4. Wireless LAN. Mobile inside limited area. Uses 802.11 technologies.
+5. WAN. Spanning the globe. Uses cables or satelites.
+6. NAS shared storage device available across network with file-level access (whole file changes even if part was changed). Storage Area Network block-level access. May use an isolated network, because requires a lot of bandwidth.
+7. Multiprotocol Label Switching - packets through WAN have labels. Any protocol, any transport medium. Uses label's pushing and popping when changing networks.
+8. SD-WAN. Software defined WAN. Used in cloud-based applications.
+### WAN Termination
+Demarcation point (demarc) - point where ISP WAN is connected to Customer Premises (CPE) LAN. Network Interface Unit - device of demarc (usually).
+### Virtual Networks
+Network Function Virtualisation (NFV) happens when multiple physical network devices are replaced with virtual versions. Managed by hypervisor - Virtual Machine Manager (VMM). VMM manages CPU, Networking, Security (can use orchestration for automation). Network is connected with vSwitch. vNIC are attached to servers.
