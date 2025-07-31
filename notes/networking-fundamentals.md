@@ -39,6 +39,19 @@ Network Function Virtualisation (NFV) happens when multiple physical network dev
 4. Metro Ethernet (MAN).
 ## Network Cabling
 ### Copper Cabling
-1. Twisted pair copper cabling. 4 pairs of twisted cables (transmit+/transmit- or recieve+/recieve-). Twist is used to reduce noise/interference (compare on recieving end and restore). Cabling standards ISE/IEC 11801. T568-A, T568-B define two types of twisted pair cables and they must use terminators of the same type.
-2. Coaxial cable. Two or more forms share a common axis.
+1. Twisted pair copper cabling. 4 pairs of twisted cables (transmit+/transmit- or recieve+/recieve-). Twist is used to reduce noise/interference (compare on recieving end and restore). Cabling standards ISE/IEC 11801. T568-A, T568-B define two types of twisted pair cables and they must use terminators of the same type. Uses Registered Jack 45 (8 position, 8 conductor).
+2. Coaxial cable. Two or more forms share a common axis. Uses F-connector (DOCSIS) and RG-6 cable.
 3. Twinaxial cable. Two inner conductors.
+### Optical Fiber
+Uses an LED or a laser to create light. Highly reflective core, low reflecting cladding, protective coating. Multi-mode fiber (used for short-range, with LED) - core of fiber is larger than light's wavelength. Single-mode fiber (used for up to 100 km, with laser).
+Fiber optic connectors:
+    - Local Connector
+    - Straight Tip
+    - Subscriber Connector
+    - Mechanical Transfer Registered Jack
+UPC connectors meet with 0 degree angle and have higher return loss. APC connectors meet with 8 degree angle and have higher insertion loss.
+### Network Transceivers
+Media converter (OSI Layer 1 - physical signal conversion).
+Transceiver - modular interface to plug in required connection. e.g Small Form-factor Pluggable (SFP, 1 Gbit/s fiber or 1 Gbit/s RJ45), Enhanced (SFP+) (up to 16 Gbit/s), Quad (QSFP), Enhanced Quad (QSFP+), BiDi QSFP+. 
+    - Duplex transceiver - one fiber to transmit, another to receive
+    - Bi-Directional transceiver - trafic in both directions via single fiber (uses two different wavelengths).
