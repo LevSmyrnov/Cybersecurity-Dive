@@ -1,4 +1,8 @@
-## OSI Model
+# Table of Contents
+- [OSI Model](#osi-model)
+- [Network Topologies](#network-topologies)
+- [Network Cabling](#network-cabling)
+## [OSI Model](#table-of-contents)
 1. Layers (**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing):
     <ul>
       <li>Application(observable browser data, e.g HTTPS or SSH or DNS)</li>
@@ -12,7 +16,8 @@
     OSI *model* is a guide. OSI *protocols*/*protocol suites* are implementations.
 3. Layers have data related to them. Data is preceded by *header*, which contains information (control flags) on how to process data.
 4. On Ethernet, maximum IP packet size is 1500 bytes. If the IP packet size is bigger than **M**aximum **T**ransmission **U**nit size, the IP packet undergoes IP fragmentation into multiple packets. *During tunneling, MTU may be smaller than on local Ethernet part of network.
-## Network Topologies
+<br></br>
+## [Network Topologies](#table-of-contents)
 1. Star (hub and spoke). All devices are connected to central node. e.g Switched Ethernet networks.
 2. Ring. Higher fault tolerance.
 3. Coax (bus network). Simple, but prone to errors.
@@ -37,7 +42,8 @@ Network Function Virtualisation (NFV) happens when multiple physical network dev
 2. Copper coax or twisted pair. Asymmetric Digital Subscriber Line (uses telephone lines). Cable Broadband (multiple frequencies/bandwidths on cable network).
 3. Fiber optics (SONET, WDM).
 4. Metro Ethernet (MAN).
-## Network Cabling
+<br></br>
+## [Network Cabling](#table-of-contents)
 ### Copper Cabling
 1. Twisted pair copper cabling. 4 pairs of twisted cables (transmit+/transmit- or recieve+/recieve-). Twist is used to reduce noise/interference (compare on recieving end and restore). Cabling standards ISE/IEC 11801. T568-A, T568-B define two types of twisted pair cables and they must use terminators of the same type. Uses Registered Jack 45 (8 position, 8 conductor).
 2. Coaxial cable. Two or more forms share a common axis. Uses F-connector (DOCSIS) and RG-6 cable.
