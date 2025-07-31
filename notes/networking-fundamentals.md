@@ -32,3 +32,13 @@
 Demarcation point (demarc) - point where ISP WAN is connected to Customer Premises (CPE) LAN. Network Interface Unit - device of demarc (usually).
 ### Virtual Networks
 Network Function Virtualisation (NFV) happens when multiple physical network devices are replaced with virtual versions. Managed by hypervisor - Virtual Machine Manager (VMM). VMM manages CPU, Networking, Security (can use orchestration for automation). Network is connected with vSwitch. vNIC are attached to servers.
+### Provider Links
+1. Satellite networking.
+2. Copper coax or twisted pair. Asymmetric Digital Subscriber Line (uses telephone lines). Cable Broadband (multiple frequencies/bandwidths on cable network).
+3. Fiber optics (SONET, WDM).
+4. Metro Ethernet (MAN).
+## Network Cabling
+### Copper Cabling
+1. Twisted pair copper cabling. 4 pairs of twisted cables (transmit+/transmit- or recieve+/recieve-). Twist is used to reduce noise/interference (compare on recieving end and restore). Cabling standards ISE/IEC 11801. T568-A, T568-B define two types of twisted pair cables and they must use terminators of the same type.
+2. Coaxial cable. Two or more forms share a common axis.
+3. Twinaxial cable. Two inner conductors.
