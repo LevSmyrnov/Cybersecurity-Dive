@@ -2,6 +2,7 @@
 - [OSI Model](#osi-model)
 - [Network Topologies](#network-topologies)
 - [Network Cabling](#network-cabling)
+- [IPv4 and IPv6](#ipv4-and-ipv6)
 ## [OSI Model](#table-of-contents)
 1. Layers (**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing):
     <ul>
@@ -61,3 +62,23 @@ Media converter (OSI Layer 1 - physical signal conversion).
 Transceiver - modular interface to plug in required connection. e.g Small Form-factor Pluggable (SFP, 1 Gbit/s fiber or 1 Gbit/s RJ45), Enhanced (SFP+) (up to 16 Gbit/s), Quad (QSFP), Enhanced Quad (QSFP+), BiDi QSFP+. 
     - Duplex transceiver - one fiber to transmit, another to receive
     - Bi-Directional transceiver - trafic in both directions via single fiber (uses two different wavelengths).
+### Ethernet Standards
+- Baseband connection - single frequency over medium.
+- Broadband connection - many frequencies over medium.
+1. 1000BASE-T: 4 pair balance twisted cable with baseband and 1 Gigabit Ethernet, 125 MHz. Uses Category 5e cable or better for 100 meters maximum.
+2. 10GBASE-T: 4 pair balance twisted cable with baseband and 10 Gigabit Ethernet, 500 MHz. Uses Category 6 cable or better for 55(unshielded)/100(shielded) meters maximum.
+3. 1000BASE-SX: optics 1 Gigabit Ethernet, short wavelength laser (shorter distance 220-550 meters).
+4. 10GBASE-SR: optics 10 Gigabit Ethernet, Short Range (26-400 meters).
+Wavelength-Division Multiplexing - bidirectional communication (different "colours"). Requires multiplexer on both ends of fiber.
+## [IPv4 and IPv6](#table-of-contents)
+### IPv4
+Requires three addresses for networking:
+    - IP Address for device identification on network.
+    - Subnet Mask for device to determine what IP subnet they are on.
+    - Default Gateway for device to send traffic for external subnets to.
+Special IP addresses:
+    - Loopback address - references itself (in range 127.0.0.1 - 127.255.255.254).
+    - Reserved addresses (class E) (in range 240.0.0.1 - 254.255.255.254).
+    - Virtual IP address - not associated with physical network adapter. Assigned to logical network adapter (router, virtual machine).
+DHCP (Dynamic Host Configuration Protocol) provides automatic address and IP configuration for almost all devices (with DHCP server).
+APIPA (Automatic Private IP Addressing) provides a link-local IP address - no connection to external network (in range 169.254.1.0 - 169.254.254.255). Assigned when DHCP server not available.
