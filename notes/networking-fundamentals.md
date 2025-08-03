@@ -52,33 +52,70 @@ Network Function Virtualisation (NFV) happens when multiple physical network dev
 ### Optical Fiber
 Uses an LED or a laser to create light. Highly reflective core, low reflecting cladding, protective coating. Multi-mode fiber (used for short-range, with LED) - core of fiber is larger than light's wavelength. Single-mode fiber (used for up to 100 km, with laser).
 Fiber optic connectors:
-    - Local Connector
-    - Straight Tip
-    - Subscriber Connector
-    - Mechanical Transfer Registered Jack
+<ul>
+    <li>Local Connector</li>
+    <li>Straight Tip</li>
+    <li>Subscriber Connector</li>
+    <li>Mechanical Transfer Registered Jack</li>
+</ul>
+
 UPC connectors meet with 0 degree angle and have higher return loss. APC connectors meet with 8 degree angle and have higher insertion loss.
 ### Network Transceivers
 Media converter (OSI Layer 1 - physical signal conversion).
 Transceiver - modular interface to plug in required connection. e.g Small Form-factor Pluggable (SFP, 1 Gbit/s fiber or 1 Gbit/s RJ45), Enhanced (SFP+) (up to 16 Gbit/s), Quad (QSFP), Enhanced Quad (QSFP+), BiDi QSFP+. 
-    - Duplex transceiver - one fiber to transmit, another to receive
-    - Bi-Directional transceiver - trafic in both directions via single fiber (uses two different wavelengths).
+<ul>
+    <li>Duplex transceiver - one fiber to transmit, another to receive</li>
+    <li>Bi-Directional transceiver - trafic in both directions via single fiber (uses two different wavelengths).</li>
+</ul>
+
 ### Ethernet Standards
-- Baseband connection - single frequency over medium.
-- Broadband connection - many frequencies over medium.
+<ul>
+<li>Baseband connection - single frequency over medium.</li>
+<li>Broadband connection - many frequencies over medium.</li>
+</ul>
+
 1. 1000BASE-T: 4 pair balance twisted cable with baseband and 1 Gigabit Ethernet, 125 MHz. Uses Category 5e cable or better for 100 meters maximum.
 2. 10GBASE-T: 4 pair balance twisted cable with baseband and 10 Gigabit Ethernet, 500 MHz. Uses Category 6 cable or better for 55(unshielded)/100(shielded) meters maximum.
 3. 1000BASE-SX: optics 1 Gigabit Ethernet, short wavelength laser (shorter distance 220-550 meters).
 4. 10GBASE-SR: optics 10 Gigabit Ethernet, Short Range (26-400 meters).
 Wavelength-Division Multiplexing - bidirectional communication (different "colours"). Requires multiplexer on both ends of fiber.
+<br></br>
 ## [IPv4 and IPv6](#table-of-contents)
 ### IPv4
 Requires three addresses for networking:
-    - IP Address for device identification on network.
-    - Subnet Mask for device to determine what IP subnet they are on.
-    - Default Gateway for device to send traffic for external subnets to.
+<ul>
+    <li>IP Address for device identification on network.</li>
+    <li>Subnet Mask for device to determine what IP subnet they are on.</li>
+    <li>Default Gateway for device to send traffic for external subnets to.</li>
+</ul>
 Special IP addresses:
-    - Loopback address - references itself (in range 127.0.0.1 - 127.255.255.254).
-    - Reserved addresses (class E) (in range 240.0.0.1 - 254.255.255.254).
-    - Virtual IP address - not associated with physical network adapter. Assigned to logical network adapter (router, virtual machine).
-DHCP (Dynamic Host Configuration Protocol) provides automatic address and IP configuration for almost all devices (with DHCP server).
-APIPA (Automatic Private IP Addressing) provides a link-local IP address - no connection to external network (in range 169.254.1.0 - 169.254.254.255). Assigned when DHCP server not available.
+<ul>
+    <li>Loopback address - references itself (in range 127.0.0.1 - 127.255.255.254).</li>
+    <li>Reserved addresses (class E) (in range 240.0.0.1 - 254.255.255.254).</li>
+    <li>Virtual IP address - not associated with physical network adapter. Assigned to logical network adapter (router, virtual machine).</li>
+</ul>
+Address resolving:
+<ul>
+    <li>DHCP (Dynamic Host Configuration Protocol) provides automatic address and IP configuration for almost all devices (with DHCP server).</li>
+    <li>APIPA (Automatic Private IP Addressing) provides a link-local IP address - no connection to external network (in range 169.254.1.0 - 169.254.254.255). Assigned when DHCP server not available.</li>
+</ul>
+
+#### Network Address Translation
+IPv4 public address range is exhausted. RFC 1918 requests private IP addresses (10.0.0.0-10.255.255.255, 172.16.0.0-172.31.255.255, 192.168.0.0-192.168.255.255). 
+Usually router provides NAT functionality: send requests contains private IP address as Source, then router translates it to Public IP (and in reverse). Source NAT/NAT overload/PAT (Port Address Translation) is used in case multiple devices have to connect to the same server: port numbers are added to Source.
+#### Network communication
+1. Unicast - one to one device. Used with IPv4 and IPv6.
+2. Broadcast - one to all devices. Limited scope of broadcast domain. Used with IPv4.
+3. Multicast - one to interested devices. Very specialised. Used with IPv6 mostly and with IPv4.
+4. Anycast - one to single device of many options. Used with IPv4 and IPv6. Used for anycast DNS.
+#### Classful Subnetting
+1. In the beginning (until 1993) there were 3 subnet classes (A, B, C), that were configured based on IP address.
+2. Today Variable Length Subnet Masks are used, manually configured. Fast subnetting methods: magic number subnetting, seven second subnetting.<br></br>
+Construction of subnet (e.g 10.74.222.11 - class A, so subnet mask 255.0.0.0):
+<ul>
+    <li>Network address - set all host bits to 0 decimal (10.0.0.0)</li>
+    <li>First usable host address - one number higher than Network address (10.0.0.1)</li>
+    <li>Network Broadcast address - all host bits to 255 decimal (10.255.255.255)</li>
+    <li>Last usable host address - one number lower than Network Broadcast address (10.255.255.254)</li>
+</ul>
+Subnet mask deliniates network and host parts of IP address (11111111.11111111.00000000.00000000 <=> 255.255.0.0 <=> /16 (CIDR notation) <=> 16 bits network 16 bits host).
