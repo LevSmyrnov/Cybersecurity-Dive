@@ -3,7 +3,7 @@
 - [Network Topologies](#network-topologies)
 - [Network Cabling](#network-cabling)
 - [IPv4 and IPv6](#ipv4-and-ipv6)
-- [IP](#ip)
+- [IP Protocols](#ip-protocols)
 ## [OSI Model](#table-of-contents)
 1. Layers (**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing):
     <ul>
@@ -147,7 +147,7 @@ To deploy IPv6:
     <li>Discovers routers.</li>
    </ul>
 
-## [IP protocols](#table-of-contents)
+## [IP Protocols](#table-of-contents)
 TCP (Transmition Control Protocol) - connection oriented, after every send there is ACKnowledgement back that information was received correctly, there are sequence numbers in headers, packets can be retransmitted, receiver can control how much data is sent.  
 UDP (User Datagram Protocol) - connectionless, no acknowledgement, no reordering, no retransimition, no flow control.  
 Socket is IP address, protocol and port number (0-65535) combination. TCP ports and UDP ports are different, not interchangeable.
