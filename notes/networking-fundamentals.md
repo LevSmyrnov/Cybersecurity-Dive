@@ -3,6 +3,7 @@
 - [Network Topologies](#network-topologies)
 - [Network Cabling](#network-cabling)
 - [IPv4 and IPv6](#ipv4-and-ipv6)
+- [IP](#ip)
 ## [OSI Model](#table-of-contents)
 1. Layers (**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing):
     <ul>
@@ -110,14 +111,14 @@ Usually router provides NAT functionality: send requests contains private IP add
 4. Anycast - one to single device of many options. Used with IPv4 and IPv6. Used for anycast DNS.
 #### Classful Subnetting
 1. In the beginning (until 1993) there were 3 subnet classes (A, B, C), that were configured based on IP address.
-2. Today Variable Length Subnet Masks are used, manually configured. Fast subnetting methods: magic number subnetting, seven second subnetting.<br></br>
+2. Today Variable Length Subnet Masks are used, manually configured. Fast subnetting methods: magic number subnetting, seven second subnetting.  
 Construction of subnet (e.g 10.74.222.11 - class A, so subnet mask 255.0.0.0):
-<ul>
-    <li>Network address - set all host bits to 0 decimal (10.0.0.0)</li>
-    <li>First usable host address - one number higher than Network address (10.0.0.1)</li>
-    <li>Network Broadcast address - all host bits to 255 decimal (10.255.255.255)</li>
-    <li>Last usable host address - one number lower than Network Broadcast address (10.255.255.254)</li>
-</ul>
+    <ul>
+        <li>Network address - set all host bits to 0 decimal (10.0.0.0)</li>
+        <li>First usable host address - one number higher than Network address (10.0.0.1)</li>
+        <li>Network Broadcast address - all host bits to 255 decimal (10.255.255.255)</li>
+        <li>Last usable host address - one number lower than Network Broadcast address (10.255.255.254)</li>
+    </ul>
 Subnet mask deliniates network and host parts of IP address (11111111.11111111.00000000.00000000 <=> 255.255.0.0 <=> /16 (CIDR notation) <=> 16 bits network 16 bits host).
 
 ### IPv6
@@ -126,10 +127,10 @@ Assignment process:
 1. Global routing prefix (48 bits): Internet Assigned Numbers Authority provides address blocks to Regional Internet Registries => RIRs assign blocks to ISPs => ISPs assign a /48 subnet to customers.
 2. Subnet (16 bits).
 3. Host address can be:
-<ul>
-    <li>assigned by DHCP</li>
-    <li>assigned by SLAAC - statically assigned via MAC address (EUI64 method). Ethernet Media Access Control address can be described as "physical" address of network adapter (EUI48). To convert EUI48 => EUI64, split 48 bits in half, put 0xFFFE in the middle + invert 7th bit <=> U/L <=> universal/local bit.</li>
-</ul>
+    <ul>
+        <li>assigned by DHCP</li>
+        <li>assigned by SLAAC - statically assigned via MAC address (EUI64 method). Ethernet Media Access Control address can be described as "physical" address of network adapter (EUI48). To convert EUI48 => EUI64, split 48 bits in half, put 0xFFFE in the middle + invert 7th bit <=> U/L <=> universal/local bit.</li>
+    </ul>
 
 Usually IPv6 is associated with first half of subnet mask. Trailed with first 3-bytes of MAC, 0xFFFE, last 3-bytes of MAC.
 #### Implementing IPv6 Network
@@ -145,3 +146,35 @@ To deploy IPv6:
     <li>Duplicate Address Detection (DAD).</li>
     <li>Discovers routers.</li>
    </ul>
+
+## [IP protocols](#table-of-contents)
+TCP (Transmition Control Protocol) - connection oriented, after every send there is ACKnowledgement back that information was received correctly, there are sequence numbers in headers, packets can be retransmitted, receiver can control how much data is sent.  
+UDP (User Datagram Protocol) - connectionless, no acknowledgement, no reordering, no retransimition, no flow control.  
+Socket is IP address, protocol and port number (0-65535) combination. TCP ports and UDP ports are different, not interchangeable.
+### Common Ports
+1. Telnet - tcp/23 - Telecommunication Network. Login to devices remotely. No encryption (in-the-clear).
+2. SSH - tcp/22 - Secure Shell. Login to devices remotely. Encrypted.
+3. DNS - udp/53; tcp/53 - Domain Name System. Tranlates names to IP addresses.
+4. SMTP - tcp/25 in-the-clear; tcp/587 encrypted over TLS - Simple Mail Transfer Protocol. Server to server email transfer. Also used to send from device to server.
+5. POP3 - tcp/110 in-the-clear; tcp/995 encrypted over TLS - Post Office Protocol version 3. Basic mail transfer functionality, e.g receive the email.
+6. IMAP4 - tcp/143 in-the-clear; tcp/993 encrypted over TLS - Internet Message Access Protocol version 4. Basic mail transfer functionality and management of mailbox.
+7. SFTP - tcp/22 - Secure File Transfer Protocol. Provides file system functionality. Uses SSH with added file transfer.
+8. FTP - tcp/20 (active mode data (transferring)); tcp/21 (control (what file to send)) File Transfer Protocol. Transfer files. Authentication with username and password. Full feature functionality.
+9. TFTP - udp/69 - Trivial File Transfer Protocol. Very simple file transfer operations. No authentication.
+10. DHCP - udp/67; udp/68 - Dynamic Host Configuration Protocol. Automatic IP configuration of device, including IP address, subnet mask, default gateway, DNS settings. Pool of IP addresses are leased for 24 hours. DHCP reservations is possible by associating MAC address with IP address.
+11. HTTP/HTTPS - tcp/80; tcp/443 (encrypted (SSL before, TLS now)) - Hypertext Transfer Protocol. Communication in the browser.
+12. SNMP - udp/161; udp/162 (alert messaging (SNMP trap)) - Simple Network Management Protocol. Gather statistics from network devices.
+13. Syslog - udp/514 - standard for message logging usually in central log collector SIEM (Security Information and Event Manager).
+14. RDP - tcp/3389 - Remote Desktop Protocol. Shared desktop (single app) view of Windows.
+15. NTP - udp/123 - Network Time Protocol. Synchronising date and time on every device.
+16. SIP - tcp/5060; tcp/5061 - Session Initiation Protocol. Voice over IP signaling (management).
+17. SMB - tcp/445(NetBIOS-less) - Server Message Block (Common Internet File System). Used by Windows for file or printer sharing.
+18. LDAP/LDAPS - tcp/389; tcp/636(Secure version over SSL) - Lightweight Directory Access Protocol. Centralised database access.
+19. Microsoft SQL Server - tcp/1433.
+20. Oracle SQL Net - tcp/1521.
+21. MySQL - tcp/3306.
+### IP protocols other than TCP/UDP
+1. ICMP - Internet Control Message Protocol. "Text messaging" for network devices, e.g ping, something went wrong, time to live expired.
+2. GRE - Generic Routing Encapsulation. Encapsulate traffic inside of IP. No built-in encryption.
+3. VPN - Virtual Private Network. Encrypted data traversing public network. VPN concentrator (hardware or software).
+4. IPSec - Internet Protocol Security. Security for OSI Layer 3. Provides confidentiality and integrity/anti-replay through encryption and packet signing via e.g Authentication Header (hash signing) or Encapsulation Security Payload (data and header encryption + integrity check) protocols. Has transport mode (original IP header in-the-clear) and tunnel mode (original IP header encrypted along with the data).
