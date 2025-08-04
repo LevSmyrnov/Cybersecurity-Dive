@@ -82,7 +82,7 @@ Wavelength-Division Multiplexing - bidirectional communication (different "colou
 <br></br>
 ## [IPv4 and IPv6](#table-of-contents)
 ### IPv4
-Requires three addresses for networking:
+32 bit addresses. Requires three addresses for networking:
 <ul>
     <li>IP Address for device identification on network.</li>
     <li>Subnet Mask for device to determine what IP subnet they are on.</li>
@@ -119,3 +119,29 @@ Construction of subnet (e.g 10.74.222.11 - class A, so subnet mask 255.0.0.0):
     <li>Last usable host address - one number lower than Network Broadcast address (10.255.255.254)</li>
 </ul>
 Subnet mask deliniates network and host parts of IP address (11111111.11111111.00000000.00000000 <=> 255.255.0.0 <=> /16 (CIDR notation) <=> 16 bits network 16 bits host).
+
+### IPv6
+128 bit addresses. Written in hexes in 16bit<=>2bytes<=>2octates groups. Groups of zeros can be abbreaviated with ::. Leading zeros in a group can be removed.
+Assignment process:
+1. Global routing prefix (48 bits): Internet Assigned Numbers Authority provides address blocks to Regional Internet Registries => RIRs assign blocks to ISPs => ISPs assign a /48 subnet to customers.
+2. Subnet (16 bits).
+3. Host address can be:
+<ul>
+    <li>assigned by DHCP</li>
+    <li>assigned by SLAAC - statically assigned via MAC address (EUI64 method). Ethernet Media Access Control address can be described as "physical" address of network adapter (EUI48). To convert EUI48 => EUI64, split 48 bits in half, put 0xFFFE in the middle + invert 7th bit <=> U/L <=> universal/local bit.</li>
+</ul>
+
+Usually IPv6 is associated with first half of subnet mask. Trailed with first 3-bytes of MAC, 0xFFFE, last 3-bytes of MAC.
+#### Implementing IPv6 Network
+To deploy IPv6:
+1. Tunnel IPv6 based on IPv4 (requires specific routers). No support for NAT.
+2. Teredo => tunnel IPv6 through NATed IPv4. Temporary use before IPv6 native networks.
+3. Dual-stack routing. Run both IPv6 and IPv4 at the same time.
+4. Uses NDP (Neighbour Discovery Protocol):
+   <ul>
+    <li>IPv6 does not have ARP (provided by broadcast) to find out MAC-address of a device.</li>
+    <li>No broadcast. Operates using multicast with ICMPv6.</li>
+    <li>Stateless Address Autoconfiguration (SLAAC) to configure IP addresses without DHCP server.</li>
+    <li>Duplicate Address Detection (DAD).</li>
+    <li>Discovers routers.</li>
+   </ul>
