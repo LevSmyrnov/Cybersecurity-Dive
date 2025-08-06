@@ -161,18 +161,25 @@ Socket is IP address, protocol and port number (0-65535) combination. TCP ports 
 7. SFTP - tcp/22 - Secure File Transfer Protocol. Provides file system functionality. Uses SSH with added file transfer.
 8. FTP - tcp/20 (active mode data (transferring)); tcp/21 (control (what file to send)) File Transfer Protocol. Transfer files. Authentication with username and password. Full feature functionality.
 9. TFTP - udp/69 - Trivial File Transfer Protocol. Very simple file transfer operations. No authentication.
-10. DHCP - udp/67; udp/68 - Dynamic Host Configuration Protocol. Automatic IP configuration of device, including IP address, subnet mask, default gateway, DNS settings. Pool of IP addresses are leased for 24 hours. DHCP reservations is possible by associating MAC address with IP address.
-11. HTTP/HTTPS - tcp/80; tcp/443 (encrypted (SSL before, TLS now)) - Hypertext Transfer Protocol. Communication in the browser.
-12. SNMP - udp/161; udp/162 (alert messaging (SNMP trap)) - Simple Network Management Protocol. Gather statistics from network devices.
-13. Syslog - udp/514 - standard for message logging usually in central log collector SIEM (Security Information and Event Manager).
-14. RDP - tcp/3389 - Remote Desktop Protocol. Shared desktop (single app) view of Windows.
-15. NTP - udp/123 - Network Time Protocol. Synchronising date and time on every device.
-16. SIP - tcp/5060; tcp/5061 - Session Initiation Protocol. Voice over IP signaling (management).
-17. SMB - tcp/445(NetBIOS-less) - Server Message Block (Common Internet File System). Used by Windows for file or printer sharing.
-18. LDAP/LDAPS - tcp/389; tcp/636(Secure version over SSL) - Lightweight Directory Access Protocol. Centralised database access.
-19. Microsoft SQL Server - tcp/1433.
-20. Oracle SQL Net - tcp/1521.
-21. MySQL - tcp/3306.
+10. DHCP - udp/67; udp/68 - Dynamic Host Configuration Protocol. Automatic IP configuration of device, including IP address, subnet mask, default gateway, DNS settings. Pool of IP addresses are leased for 24 hours. DHCP reservations is possible by associating MAC address with IP address.  
+Process:
+    1. DHCP Discover from client (0.0.0.0:udp/68) a broadcast message (255.255.255.255:udp/67).
+    2. DHCP Offer from server (10.10.10.99:udp/67) a broadcast message (255.255.255.255:udp/68) with an IP address.
+    3. DHCP Request from client (0.0.0.0:udp/68) a broadcast message (255.255.255.255:udp/67).
+    4. DHCP Acknowledgement from server (10.10.10.99:udp/67) a broadcast message (255.255.255.255:udp/68).  
+Broadcast messages stop at router (inside subnet), which is worked around with DHCP relay (IP helper) on router with DHCP server address.
+DHCP configuration - DHCP scope (IP address range and exceptions (pool), subnet mask, duration of lease, DNS servers, default gateway, etc.). Dynamic assignment, Automatic assignment (similar to dynamic, but always same IP address), Static assignment.
+12. HTTP/HTTPS - tcp/80; tcp/443 (encrypted (SSL before, TLS now)) - Hypertext Transfer Protocol. Communication in the browser.
+13. SNMP - udp/161; udp/162 (alert messaging (SNMP trap)) - Simple Network Management Protocol. Gather statistics from network devices.
+14. Syslog - udp/514 - standard for message logging usually in central log collector SIEM (Security Information and Event Manager).
+15. RDP - tcp/3389 - Remote Desktop Protocol. Shared desktop (single app) view of Windows.
+16. NTP - udp/123 - Network Time Protocol. Synchronising date and time on every device.
+17. SIP - tcp/5060; tcp/5061 - Session Initiation Protocol. Voice over IP signaling (management).
+18. SMB - tcp/445(NetBIOS-less) - Server Message Block (Common Internet File System). Used by Windows for file or printer sharing.
+19. LDAP/LDAPS - tcp/389; tcp/636(Secure version over SSL) - Lightweight Directory Access Protocol. Centralised database access.
+20. Microsoft SQL Server - tcp/1433.
+21. Oracle SQL Net - tcp/1521.
+22. MySQL - tcp/3306.
 ### IP protocols other than TCP/UDP
 1. ICMP - Internet Control Message Protocol. "Text messaging" for network devices, e.g ping, something went wrong, time to live expired.
 2. GRE - Generic Routing Encapsulation. Encapsulate traffic inside of IP. No built-in encryption.
