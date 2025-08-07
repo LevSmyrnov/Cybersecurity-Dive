@@ -154,14 +154,15 @@ Socket is IP address, protocol and port number (0-65535) combination. TCP ports 
 ### Common Ports
 1. Telnet - tcp/23 - Telecommunication Network. Login to devices remotely. No encryption (in-the-clear).
 2. SSH - tcp/22 - Secure Shell. Login to devices remotely. Encrypted.
-3. DNS - udp/53; tcp/53 - Domain Name System. Tranlates names to IP addresses.
-4. SMTP - tcp/25 in-the-clear; tcp/587 encrypted over TLS - Simple Mail Transfer Protocol. Server to server email transfer. Also used to send from device to server.
-5. POP3 - tcp/110 in-the-clear; tcp/995 encrypted over TLS - Post Office Protocol version 3. Basic mail transfer functionality, e.g receive the email.
-6. IMAP4 - tcp/143 in-the-clear; tcp/993 encrypted over TLS - Internet Message Access Protocol version 4. Basic mail transfer functionality and management of mailbox.
-7. SFTP - tcp/22 - Secure File Transfer Protocol. Provides file system functionality. Uses SSH with added file transfer.
-8. FTP - tcp/20 (active mode data (transferring)); tcp/21 (control (what file to send)) File Transfer Protocol. Transfer files. Authentication with username and password. Full feature functionality.
-9. TFTP - udp/69 - Trivial File Transfer Protocol. Very simple file transfer operations. No authentication.
-10. DHCP - udp/67; udp/68 - Dynamic Host Configuration Protocol. Automatic IP configuration of device, including IP address, subnet mask, default gateway, DNS settings. Pool of IP addresses are leased for 24 hours. DHCP reservations is possible by associating MAC address with IP address.  
+3. DNS - udp/53; tcp/53 - Domain Name System. Tranlates names to IP addresses. Local vs External DNS. Recursive (delegate lookup to server, usually local server, with cache of names) vs Iterative (perform queries yourself, usually local machine, with cache) DNS queries. DNS information can be authoritative (directly from DNS server source files) or non-authoritative (cached), it has TTL after which it gets update through whole name resolving process again.
+   DNS servers contain resource records. DNS server configuration file consists of Start Of Authority(SOA, DNS zone details), Address Records (A(IPv4)/AAAA(IPv6)), Canonical Name Records (CNAME, provide aliases for services), Service Records (SRV, find specific services), Main Exchanger Record (MX), Name Server Records (NS), Pointer Records (PTR, for reverse dns lookup), Text Records (TXT). Zone transfers provide redundancy and synchronisation.
+5. SMTP - tcp/25 in-the-clear; tcp/587 encrypted over TLS - Simple Mail Transfer Protocol. Server to server email transfer. Also used to send from device to server.
+6. POP3 - tcp/110 in-the-clear; tcp/995 encrypted over TLS - Post Office Protocol version 3. Basic mail transfer functionality, e.g receive the email.
+7. IMAP4 - tcp/143 in-the-clear; tcp/993 encrypted over TLS - Internet Message Access Protocol version 4. Basic mail transfer functionality and management of mailbox.
+8. SFTP - tcp/22 - Secure File Transfer Protocol. Provides file system functionality. Uses SSH with added file transfer.
+9. FTP - tcp/20 (active mode data (transferring)); tcp/21 (control (what file to send)) File Transfer Protocol. Transfer files. Authentication with username and password. Full feature functionality.
+10. TFTP - udp/69 - Trivial File Transfer Protocol. Very simple file transfer operations. No authentication.
+11. DHCP - udp/67; udp/68 - Dynamic Host Configuration Protocol. Automatic IP configuration of device, including IP address, subnet mask, default gateway, DNS settings. Pool of IP addresses are leased for 24 hours. DHCP reservations is possible by associating MAC address with IP address.  
 Process:
     1. DHCP Discover from client (0.0.0.0:udp/68) a broadcast message (255.255.255.255:udp/67).
     2. DHCP Offer from server (10.10.10.99:udp/67) a broadcast message (255.255.255.255:udp/68) with an IP address.
@@ -173,7 +174,7 @@ DHCP configuration - DHCP scope (IP address range and exceptions (pool), subnet 
 13. SNMP - udp/161; udp/162 (alert messaging (SNMP trap)) - Simple Network Management Protocol. Gather statistics from network devices.
 14. Syslog - udp/514 - standard for message logging usually in central log collector SIEM (Security Information and Event Manager).
 15. RDP - tcp/3389 - Remote Desktop Protocol. Shared desktop (single app) view of Windows.
-16. NTP - udp/123 - Network Time Protocol. Synchronising date and time on every device.
+16. NTP - udp/123 - Network Time Protocol. Synchronising date and time on every device. NTP Server listens on udp/123 and sends time. NTP Client makes request to server and updates it's time. Accuracy of server is called stratum. Stratum 0 - atomic/GPS clock. Stratum 1 - device that synchronises with Stratum 0... When configuring NTP for server/client, specify NTP server address (can be multiple).
 17. SIP - tcp/5060; tcp/5061 - Session Initiation Protocol. Voice over IP signaling (management).
 18. SMB - tcp/445(NetBIOS-less) - Server Message Block (Common Internet File System). Used by Windows for file or printer sharing.
 19. LDAP/LDAPS - tcp/389; tcp/636(Secure version over SSL) - Lightweight Directory Access Protocol. Centralised database access.
