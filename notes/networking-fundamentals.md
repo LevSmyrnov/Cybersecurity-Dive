@@ -4,6 +4,8 @@
 - [Network Cabling](#network-cabling)
 - [IPv4 and IPv6](#ipv4-and-ipv6)
 - [IP Protocols](#ip-protocols)
+- [Network Architectures](#network-architectures)
+- [Cloud](#cloud)
 ## [OSI Model](#table-of-contents)
 1. Layers (**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing):
     <ul>
@@ -30,7 +32,7 @@
 1. Peer-to-peer. Everyone talks to everyone.
 2. Client-server. Responsibilities are split.
 3. LAN. One building. Uses Ethernet or 802.11 wireless.
-4. Wireless LAN. Mobile inside limited area. Uses 802.11 technologies.
+4. Wireless LAN. Mobile inside limited area. Uses 802.11 technologies. Or Long Term Evolution (LTE/4G). Or 5G cellular networking.
 5. WAN. Spanning the globe. Uses cables or satelites.
 6. NAS shared storage device available across network with file-level access (whole file changes even if part was changed). Storage Area Network block-level access. May use an isolated network, because requires a lot of bandwidth.
 7. Multiprotocol Label Switching - packets through WAN have labels. Any protocol, any transport medium. Uses label's pushing and popping when changing networks.
@@ -186,3 +188,23 @@ DHCP configuration - DHCP scope (IP address range and exceptions (pool), subnet 
 2. GRE - Generic Routing Encapsulation. Encapsulate traffic inside of IP. No built-in encryption.
 3. VPN - Virtual Private Network. Encrypted data traversing public network. VPN concentrator (hardware or software).
 4. IPSec - Internet Protocol Security. Security for OSI Layer 3. Provides confidentiality and integrity/anti-replay through encryption and packet signing via e.g Authentication Header (hash signing) or Encapsulation Security Payload (data and header encryption + integrity check) protocols. Has transport mode (original IP header in-the-clear) and tunnel mode (original IP header encrypted along with the data).
+## [Network Architectures](#table-of-contents)
+1. Three tier architecture:
+   1. Core. Services and servers
+   2. Distribution. Manages communication between users and core.
+   3. Access. Users and access switch.
+2. SDN (Software Defined Networking) - networking devices have different functional planes of operation (data, control, management). Virtualised/Cloud architecture devices are managed via SSH/SNMP/API.
+3. Spine and Leaf. Each leaf switch connects to each spine switch, each spine switch connects to each leaf switch. Leaf switches do not connect to each other (spines too).
+### Storage architectures
+1. Storage Area Network (SAN).
+2. Fibre Channel (FC) or Fibre Channel over Ethernet.
+3. iSCSI (Internet Small Computer Systems Interface).
+## [Cloud](#table-of-contents)
+On-demand computing power. Elasticity (scaling). Applications also scale. Multitenancy (efficiency).  
+Network function virtualisation (NFV) - replace physical network devices with virtual versions (routing, switching, load balancing, firewall). Controlled (and deployed) from hypervisor.  
+Virtual Private Cloud (VPC) is a pool of resources inside public cloud. Connecting is often through site-to-site VPN through internet or via Virtual Private Cloud Gateway. VPC NAT gateway is used to communicate publicly over internet. To communicate with host services on e.g other cloud providers, VPC endpoint is used.   
+On cloud there are network security lists and network security groups are used to configure inbound and outbound rules for certain IPs.  
+Cloud deployment models (public/private/hybrid):
+1. SaaS - Software as a Service - on-demand software. No local installation. Centralised management and data. Complete application offering.
+2. Paas - Platform as a Service - cloud handles platform, user handles development.
+3. IaaS - Infrastructure as a Service - application and data still in cloud, but more control. Also, user manages the infrastructure and security.
